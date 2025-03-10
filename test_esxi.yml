@@ -1,0 +1,15 @@
+- name: Test connection to ESXi
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Check connection with ESXi
+      community.vmware.vmware_about_info:
+        hostname: "ESXI_ip"
+        username: "ESXI_username"
+        password: "ESXI_password"
+        validate_certs: no
+      register: esxi_info
+
+    - name: Display ESXi information
+      debug:
+        msg: "{{ esxi_info }}"
